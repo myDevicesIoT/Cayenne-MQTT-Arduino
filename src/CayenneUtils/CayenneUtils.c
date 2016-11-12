@@ -62,9 +62,9 @@ int buildTopic(char* topic, size_t length, const char* username, const char* cli
 	topic[0] = '\0';
 	strcat(topic, CAYENNE_VERSION);
 	strcat(topic, "/");
-	strcat(topic, username);
+	CAYENNE_STRCAT(topic, username);
 	CAYENNE_STRCAT(topic, THINGS_STRING);
-	strcat(topic, clientID);
+	CAYENNE_STRCAT(topic, clientID);
 	strcat(topic, "/");
 	strcat(topic, suffix);
 	return CAYENNE_SUCCESS;
@@ -426,9 +426,9 @@ int CayenneParseTopic(CayenneTopic* topic, unsigned int* channel, const char** c
 	if (strncmp(CAYENNE_VERSION, topicName, strlen(CAYENNE_VERSION)) != 0)
 		return CAYENNE_FAILURE;
 	index = topicName + strlen(CAYENNE_VERSION) + 1;
-	if (strncmp(username, index, strlen(username)) != 0)
+	if (CAYENNE_STRNCMP(index, username, CAYENNE_STRLEN(username)) != 0)
 		return CAYENNE_FAILURE;
-	index += strlen(username);
+	index += CAYENNE_STRLEN(username);
 	if (CAYENNE_STRNCMP(index, THINGS_STRING, CAYENNE_STRLEN(THINGS_STRING)) != 0)
 		return CAYENNE_FAILURE;
 	index += CAYENNE_STRLEN(THINGS_STRING);

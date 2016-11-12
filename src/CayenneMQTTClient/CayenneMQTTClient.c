@@ -91,9 +91,15 @@ int CayenneMQTTConnect(CayenneMQTTClient* client)
 {
 	MQTTPacket_connectData data = MQTTPacket_connectData_initializer;
 	data.MQTTVersion = 3;
-	data.clientID.cstring = (char*)client->clientID;
-	data.username.cstring = (char*)client->username;
-	data.password.cstring = (char*)client->password;
+	char usernameBuffer[37] = {};
+	char passwordBuffer[41] = {};
+	char clientIDBuffer[37] = {};
+	CAYENNE_STRCPY(usernameBuffer, client->username);
+	CAYENNE_STRCPY(passwordBuffer, client->password);
+	CAYENNE_STRCPY(clientIDBuffer, client->clientID);
+	data.username.cstring = usernameBuffer;// (char*)client->username;
+	data.password.cstring = passwordBuffer;// (char*)client->password;
+	data.clientID.cstring = clientIDBuffer;// (char*)client->clientID;
 	return MQTTConnect(&client->mqttClient, &data);
 }
 
@@ -372,7 +378,7 @@ int CayenneMQTTUnsubscribe(CayenneMQTTClient* client, const char* clientID, Caye
 			for (i = 0; i < CAYENNE_MAX_MESSAGE_HANDLERS; ++i)
 			{
 				if ((client->messageHandlers[i].topic == topic && client->messageHandlers[i].channel == channel) &&
-					(strcmp(clientID ? clientID : client->clientID, client->messageHandlers[i].clientID) == 0))
+					(CAYENNE_STRCMP(clientID ? clientID : client->clientID, client->messageHandlers[i].clientID) == 0))
 				{
 					client->messageHandlers[i].clientID = NULL;
 					client->messageHandlers[i].topic = UNDEFINED_TOPIC;

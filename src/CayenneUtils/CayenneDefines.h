@@ -54,7 +54,9 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 #define CAYENNE_PSTR(s) PSTR(s)
 #define CAYENNE_STRLEN(s) strlen_P(s)
 #define CAYENNE_STRCAT(s1, s2) strcat_P(s1, s2)
+#define CAYENNE_STRCMP(s1, s2) strcmp_P(s1, s2)
 #define CAYENNE_STRNCMP(s1, s2, n) strncmp_P(s1, s2, n)
+#define CAYENNE_STRCPY(s1, s2) strcpy_P(s1, s2)
 #define CAYENNE_MEMCPY(s1, s2, n) memcpy_P(s1, s2, n)
 #define CAYENNE_READ_BYTE(b) pgm_read_byte(b);
 #else
@@ -62,7 +64,9 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 #define CAYENNE_PSTR(s) s
 #define CAYENNE_STRLEN(s) strlen(s)
 #define CAYENNE_STRCAT(s1, s2) strcat(s1, s2)
+#define CAYENNE_STRCMP(s1, s2) strcmp(s1, s2)
 #define CAYENNE_STRNCMP(s1, s2, n) strncmp(s1, s2, n)
+#define CAYENNE_STRCPY(s1, s2) strcpy(s1, s2)
 #define CAYENNE_MEMCPY(s1, s2, n) memcpy(s1, s2, n)
 #define CAYENNE_READ_BYTE(b) *b;
 #endif
