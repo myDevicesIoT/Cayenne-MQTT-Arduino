@@ -5,9 +5,9 @@
 #include <CayenneMQTTEthernetW5500.h>
 
 // Cayenne authentication info. This should be obtained from the Cayenne Dashboard.
-char username[] = "MQTT_USERNAME";
-char password[] = "MQTT_PASSWORD";
-char clientID[] = "CLIENT_ID";
+const char PROGMEM username[] = "MQTT_USERNAME";
+const char PROGMEM password[] = "MQTT_PASSWORD";
+const char PROGMEM clientID[] = "CLIENT_ID";
 
 unsigned long lastMillis = 0;
 

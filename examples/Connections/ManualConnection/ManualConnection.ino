@@ -9,9 +9,9 @@
                                         // You will need the EthernetW5200 library installed. See the ArduinoEthernetW5200 example sketch for more info.
 
 // Cayenne authentication info. This should be obtained from the Cayenne Dashboard.
-char username[] = "MQTT_USERNAME";
-char password[] = "MQTT_PASSWORD";
-char clientID[] = "CLIENT_ID";
+const char PROGMEM username[] = "MQTT_USERNAME";
+const char PROGMEM password[] = "MQTT_PASSWORD";
+const char PROGMEM clientID[] = "CLIENT_ID";
 
 // Mac address should be different for each device in your LAN
 byte arduino_mac[] = { 0xDE, 0xED, 0xBA, 0xFE, 0xFE, 0xED };
