@@ -63,6 +63,16 @@
         #if   defined(__MSP430F5529__)
         #define INFO_CPU  "MSP430F5529"
         #define NO_FLOAT
+
+        // Added support for CC3200 and other LaunchPads
+        #elif defined(__CC3200R1M1RGC__)
+        #define INFO_CPU  "CC3200R1M1RGC"
+        #define BLYNK_NO_FLOAT
+
+        #else
+        #define INFO_CPU  "Other LaunchPad"
+        #warning "Cannot detect board type"
+
         #endif
 
     #elif defined(LINUX)
