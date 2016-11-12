@@ -16,8 +16,8 @@
  *******************************************************************************/
 
 #include "MQTTPacket.h"
-
 #include <string.h>
+#include "../CayenneUtils/CayenneDefines.h"
 
 /**
  * Encodes the message length according to the MQTT algorithm
@@ -169,12 +169,13 @@ void writeInt(unsigned char** pptr, int anInt)
  * Writes a "UTF" string to an output buffer.  Converts C string to length-delimited.
  * @param pptr pointer to the output buffer - incremented by the number of bytes used & returned
  * @param string the C string to write
+ 8 @param usingProgmem if 1 the string is in program memory, otherwise 0.
  */
-void writeCString(unsigned char** pptr, const char* string)
+void writeCString(unsigned char** pptr, const char* string, int usingProgmem)
 {
-	int len = strlen(string);
+	int len = usingProgmem ? CAYENNE_STRLEN(string) : strlen(string);
 	writeInt(pptr, len);
-	memcpy(*pptr, string, len);
+	usingProgmem ? CAYENNE_MEMCPY(*pptr, string, len) : memcpy(*pptr, string, len);
 	*pptr += len;
 }
 
@@ -195,7 +196,7 @@ void writeMQTTString(unsigned char** pptr, MQTTString mqttstring)
 		*pptr += mqttstring.lenstring.len;
 	}
 	else if (mqttstring.cstring)
-		writeCString(pptr, mqttstring.cstring);
+		writeCString(pptr, mqttstring.cstring, 0);
 	else
 		writeInt(pptr, 0);
 }

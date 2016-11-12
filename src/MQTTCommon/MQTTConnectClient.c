@@ -15,8 +15,8 @@
  *******************************************************************************/
 
 #include "MQTTPacket.h"
-
 #include <string.h>
+#include "../CayenneUtils/CayenneDefines.h"
 
 /**
   * Determines the length of the MQTT connect packet that would be produced using the supplied connect options.
@@ -33,13 +33,13 @@ int MQTTSerialize_connectLength(MQTTPacket_connectData* options)
 	else if (options->MQTTVersion == 4)
 		len = 10;
 
-	len += MQTTstrlen(options->clientID)+2;
+	len += CAYENNE_STRLEN(options->clientID.cstring)+2;
 	if (options->willFlag)
 		len += MQTTstrlen(options->will.topicName)+2 + MQTTstrlen(options->will.message)+2;
 	if (options->username.cstring || options->username.lenstring.data)
-		len += MQTTstrlen(options->username)+2;
+		len += CAYENNE_STRLEN(options->username.cstring)+2;
 	if (options->password.cstring || options->password.lenstring.data)
-		len += MQTTstrlen(options->password)+2;
+		len += CAYENNE_STRLEN(options->password.cstring)+2;
 
 	return len;
 }
@@ -74,12 +74,12 @@ int MQTTSerialize_connect(unsigned char* buf, int buflen, MQTTPacket_connectData
 
 	if (options->MQTTVersion == 4)
 	{
-		writeCString(&ptr, "MQTT");
+		writeCString(&ptr, "MQTT", 0);
 		writeChar(&ptr, (char) 4);
 	}
 	else
 	{
-		writeCString(&ptr, "MQIsdp");
+		writeCString(&ptr, "MQIsdp", 0);
 		writeChar(&ptr, (char) 3);
 	}
 
@@ -99,16 +99,16 @@ int MQTTSerialize_connect(unsigned char* buf, int buflen, MQTTPacket_connectData
 
 	writeChar(&ptr, flags.all);
 	writeInt(&ptr, options->keepAliveInterval);
-	writeMQTTString(&ptr, options->clientID);
+	writeCString(&ptr, options->clientID.cstring, 1);
 	if (options->willFlag)
 	{
 		writeMQTTString(&ptr, options->will.topicName);
 		writeMQTTString(&ptr, options->will.message);
 	}
 	if (flags.bits.username)
-		writeMQTTString(&ptr, options->username);
+		writeCString(&ptr, options->username.cstring, 1);
 	if (flags.bits.password)
-		writeMQTTString(&ptr, options->password);
+		writeCString(&ptr, options->password.cstring, 1);
 
 	rc = ptr - buf;
 

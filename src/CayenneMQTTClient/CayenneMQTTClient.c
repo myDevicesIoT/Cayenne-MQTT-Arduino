@@ -91,15 +91,9 @@ int CayenneMQTTConnect(CayenneMQTTClient* client)
 {
 	MQTTPacket_connectData data = MQTTPacket_connectData_initializer;
 	data.MQTTVersion = 3;
-	char usernameBuffer[37] = {};
-	char passwordBuffer[41] = {};
-	char clientIDBuffer[37] = {};
-	CAYENNE_STRCPY(usernameBuffer, client->username);
-	CAYENNE_STRCPY(passwordBuffer, client->password);
-	CAYENNE_STRCPY(clientIDBuffer, client->clientID);
-	data.username.cstring = usernameBuffer;// (char*)client->username;
-	data.password.cstring = passwordBuffer;// (char*)client->password;
-	data.clientID.cstring = clientIDBuffer;// (char*)client->clientID;
+	data.username.cstring = (char*)client->username;
+	data.password.cstring = (char*)client->password;
+	data.clientID.cstring = (char*)client->clientID;
 	return MQTTConnect(&client->mqttClient, &data);
 }
 
