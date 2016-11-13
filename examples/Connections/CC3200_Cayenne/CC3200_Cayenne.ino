@@ -96,7 +96,7 @@ void loop()
     Cayenne.loop();
 
     // Publish data every (period_ms) ms
-    if (millis() > - chrono)
+    if (millis() > chrono)
     {
         chrono = millis() + period_ms;
 
