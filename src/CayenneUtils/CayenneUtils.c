@@ -145,7 +145,7 @@ int buildSuffix(char* suffix, size_t length, const CayenneTopic topic, unsigned 
 			strcat(suffix, "+");
 		}
 		else {
-#if defined(__AVR__) || defined (ARDUINO_ARCH_ARC32)
+#if defined(__AVR__) || defined (ARDUINO_ARCH_ARC32) || defined(ENERGIA)
 			itoa(channel, &suffix[strlen(suffix)], 10);
 #else
 			snprintf(&suffix[strlen(suffix)], length - strlen(suffix), "%u", channel);

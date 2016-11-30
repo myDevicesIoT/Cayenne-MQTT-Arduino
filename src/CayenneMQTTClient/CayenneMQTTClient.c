@@ -13,6 +13,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ // Added support for CC3200 and other LaunchPads
+ // Rei Vilo, Nov. 30, 2016 — CC = BY SA NC
+
 */
 
 #include "CayenneMQTTClient.h"
@@ -131,7 +135,7 @@ int CayenneMQTTPublishData(CayenneMQTTClient* client, const char* clientID, Caye
 int CayenneMQTTPublishDataInt(CayenneMQTTClient* client, const char* clientID, CayenneTopic topic, unsigned int channel, const char* type, const char* unit, int value)
 {
 	char str[2 + 8 * sizeof(value)];
-#if defined(__AVR__) || defined (ARDUINO_ARCH_ARC32)
+#if defined(__AVR__) || defined (ARDUINO_ARCH_ARC32) || defined(ENERGIA)
 	itoa(value, str, 10);
 #else
 	snprintf(str, sizeof(str), "%d", value);
@@ -154,7 +158,7 @@ int CayenneMQTTPublishDataInt(CayenneMQTTClient* client, const char* clientID, C
 int CayenneMQTTPublishDataUInt(CayenneMQTTClient* client, const char* clientID, CayenneTopic topic, unsigned int channel, const char* type, const char* unit, unsigned int value)
 {
 	char str[1 + 8 * sizeof(value)];
-#if defined(__AVR__) || defined (ARDUINO_ARCH_ARC32)
+#if defined(__AVR__) || defined (ARDUINO_ARCH_ARC32) || defined(ENERGIA)
 	utoa(value, str, 10);
 #else
 	snprintf(str, sizeof(str), "%u", value);
@@ -177,7 +181,7 @@ int CayenneMQTTPublishDataUInt(CayenneMQTTClient* client, const char* clientID, 
 int CayenneMQTTPublishDataLong(CayenneMQTTClient* client, const char* clientID, CayenneTopic topic, unsigned int channel, const char* type, const char* unit, long value)
 {
 	char str[2 + 8 * sizeof(value)];
-#if defined(__AVR__) || defined (ARDUINO_ARCH_ARC32)
+#if defined(__AVR__) || defined (ARDUINO_ARCH_ARC32) || defined(ENERGIA)
 	ltoa(value, str, 10);
 #else
 	snprintf(str, sizeof(str), "%ld", value);
@@ -200,7 +204,7 @@ int CayenneMQTTPublishDataLong(CayenneMQTTClient* client, const char* clientID, 
 int CayenneMQTTPublishDataULong(CayenneMQTTClient* client, const char* clientID, CayenneTopic topic, unsigned int channel, const char* type, const char* unit, unsigned long value)
 {
 	char str[1 + 8 * sizeof(value)];
-#if defined(__AVR__) || defined (ARDUINO_ARCH_ARC32)
+#if defined(__AVR__) || defined (ARDUINO_ARCH_ARC32) || defined(ENERGIA)
 	ultoa(value, str, 10);
 #else
 	snprintf(str, sizeof(str), "%lu", value);
@@ -223,7 +227,7 @@ int CayenneMQTTPublishDataULong(CayenneMQTTClient* client, const char* clientID,
 int CayenneMQTTPublishDataDouble(CayenneMQTTClient* client, const char* clientID, CayenneTopic topic, unsigned int channel, const char* type, const char* unit, double value)
 {
 	char str[33];
-#if defined(__AVR__) || defined (ARDUINO_ARCH_ARC32)
+#if defined(__AVR__) || defined (ARDUINO_ARCH_ARC32) || defined(ENERGIA)
 	dtostrf(value, 5, 3, str);
 #else
 	snprintf(str, 33, "%2.3f", value);
@@ -246,7 +250,7 @@ int CayenneMQTTPublishDataDouble(CayenneMQTTClient* client, const char* clientID
 int CayenneMQTTPublishDataFloat(CayenneMQTTClient* client, const char* clientID, CayenneTopic topic, unsigned int channel, const char* type, const char* unit, float value)
 {
 	char str[33];
-#if defined(__AVR__) || defined (ARDUINO_ARCH_ARC32)
+#if defined(__AVR__) || defined (ARDUINO_ARCH_ARC32) || defined(ENERGIA)
 	dtostrf(value, 5, 3, str);
 #else
 	snprintf(str, 33, "%2.3f", value);
