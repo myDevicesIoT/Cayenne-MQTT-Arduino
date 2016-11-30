@@ -115,11 +115,11 @@ public:
 	* Send device info
 	*/
 	void publishDeviceInfo() {
-        publishData(SYS_MODEL_TOPIC, CAYENNE_NO_CHANNEL, F(INFO_DEVICE));
+		publishData(SYS_MODEL_TOPIC, CAYENNE_NO_CHANNEL, F(INFO_DEVICE));
 		publishData(SYS_CPU_MODEL_TOPIC, CAYENNE_NO_CHANNEL, F(INFO_CPU));
 		publishData(SYS_CPU_SPEED_TOPIC, CAYENNE_NO_CHANNEL, F_CPU);
 		publishData(SYS_VERSION_TOPIC, CAYENNE_NO_CHANNEL, F(CAYENNE_VERSION));
-    }
+	}
 
 	/**
 	* Sends a measurement to a Cayenne channel
