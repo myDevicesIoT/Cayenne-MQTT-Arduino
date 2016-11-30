@@ -42,14 +42,14 @@ Logging code adapted from Blynk library BlynkDebug.h. Copyright info below.
 #endif
 
 #ifdef CAYENNE_PRINT
-	static void log(const char* PROGMEM message, ...)
+	static void log(const char* CAYENNE_PROGMEM message, ...)
 	{
 		va_list args;
 		va_start(args, message);
 		char buffer[12];
 		CAYENNE_PRINT.print('[');
 		CAYENNE_PRINT.print(millis());
-		CAYENNE_PRINT.print(F("] "));
+		CAYENNE_PRINT.print(CAYENNE_FLASH("] "));
 		const char* p = message;
 		size_t n = 0;
 		while (1) {
