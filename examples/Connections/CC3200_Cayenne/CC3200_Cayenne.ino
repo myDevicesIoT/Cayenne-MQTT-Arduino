@@ -73,14 +73,33 @@ uint32_t chrono = 0;
 // Prototypes
 
 // Network name and password are in Credentials.h
-//char ssidWiFi[] = "ssid";
-//char passwordWiFi[] = "wifiPassword";
-#include "Credentials.h"
+
+///
+/// @brief	Network name = SSID
+///
+char ssidWiFi[] = "ssidWiFi";
+
+///
+/// @brief	Network password
+///
+char passwordWiFi[] = "passwordWiFi";
 
 // Cayenne authentication info. This should be obtained from the Cayenne Dashboard.
-//char usernameCayenne[] = "MQTT_USERNAME";
-//char passwordCayenne[] = "MQTT_PASSWORD";
-//char clientIDCayenne[] = "CLIENT_ID";
+
+///
+/// @brief	User name, given by Cayenne
+///
+char usernameCayenne[] = "usernameCayenne";
+
+///
+/// @brief	Password, given by Cayenne
+///
+char passwordCayenne[] = "passwordCayenne";
+
+///
+/// @brief	Client ID, given by Cayenne
+///
+char clientIDCayenne[] = "clientIDCayenne";
 
 
 // Add setup code
