@@ -115,11 +115,11 @@ public:
 	* Send device info
 	*/
 	void publishDeviceInfo() {
-		publishData(SYS_MODEL_TOPIC, CAYENNE_NO_CHANNEL, F(INFO_DEVICE));
+        publishData(SYS_MODEL_TOPIC, CAYENNE_NO_CHANNEL, F(INFO_DEVICE));
 		publishData(SYS_CPU_MODEL_TOPIC, CAYENNE_NO_CHANNEL, F(INFO_CPU));
 		publishData(SYS_CPU_SPEED_TOPIC, CAYENNE_NO_CHANNEL, F_CPU);
 		publishData(SYS_VERSION_TOPIC, CAYENNE_NO_CHANNEL, F(CAYENNE_VERSION));
-	}
+    }
 
 	/**
 	* Sends a measurement to a Cayenne channel
@@ -156,7 +156,7 @@ public:
 	* @param values  Array of values to be sent
 	* @param type  Measurement type
 	*/
-	void virtualWrite(unsigned int channel, const CayenneValueArray& values, const char* type)
+	void virtualWrite(unsigned int channel, const CayenneDataArray& values, const char* type)
 	{
 		publishData(DATA_TOPIC, channel, values.getArray(), values.getCount(), type);
 	}
@@ -168,7 +168,7 @@ public:
 	* @param values  Array of values to be sent
 	* @param type  Measurement type
 	*/
-	void virtualWrite(unsigned int channel, const CayenneValueArray& values, const __FlashStringHelper* type)
+	void virtualWrite(unsigned int channel, const CayenneDataArray& values, const __FlashStringHelper* type)
 	{
 		publishData(DATA_TOPIC, channel, values.getArray(), values.getCount(), type);
 	}
@@ -319,8 +319,7 @@ private:
 	*/
 	template <typename T>
 	static void publishData(CayenneTopic topic, unsigned int channel, const T& data, const char* key = NULL, const char* subkey = NULL) {
-		char buffer[64];
-		CayenneValueArray values(buffer, sizeof(buffer));
+		CayenneDataArray values;
 		values.add(subkey, data);
 		publishData(topic, channel, values.getArray(), values.getCount(), key);
 	}
@@ -335,10 +334,9 @@ private:
 	*/
 	template <typename T>
 	static void publishData(CayenneTopic topic, unsigned int channel, const T& data, const __FlashStringHelper* key, const __FlashStringHelper* subkey = NULL) {
-		char buffer[64];
 		char keyBuffer[MAX_TYPE_LENGTH + 1];
-		CayenneValueArray values(buffer, sizeof(buffer));
-		values.add((const char*)subkey, data);
+		CayenneDataArray values;
+		values.add(subkey, data);
 		CAYENNE_MEMCPY(keyBuffer, reinterpret_cast<const char *>(key), CAYENNE_STRLEN(reinterpret_cast<const char *>(key)) + 1);
 		publishData(topic, channel, values.getArray(), values.getCount(), keyBuffer);
 	}

@@ -58,6 +58,7 @@
 #ifndef INFO_DEVICE
 
     #if   defined(ENERGIA)
+
         #define INFO_DEVICE  "Energia"
 
         #if   defined(__MSP430F5529__)
@@ -65,6 +66,8 @@
         #define NO_FLOAT
 
         // Added support for CC3200 and other LaunchPads
+        // Rei Vilo, Nov. 30, 2016 — CC = BY SA NC
+        #define F(x) x
         #elif defined(__CC3200R1M1RGC__)
         #define INFO_CPU  "CC3200R1M1RGC"
         #define NO_FLOAT
