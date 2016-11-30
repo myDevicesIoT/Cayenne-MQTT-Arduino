@@ -59,7 +59,6 @@
 // Include application, user and local libraries
 #include "Wire.h"
 #include "Sensor_Units.h"
-#include <WiFi.h>
 #include <CayenneMQTTWiFi.h>
 
 // SPI not required for CC3200 LaunchPad
@@ -67,9 +66,16 @@
 #include <SPI.h>
 #endif
 
-// Define structures and classes
+// WiFi network info.
+char ssid[] = "ssid";
+char wifiPassword[] = "wifiPassword";
 
-// Define variables and constants
+// Cayenne authentication info. This should be obtained from the Cayenne Dashboard.
+char username[] = "MQTT_USERNAME";
+char password[] = "MQTT_PASSWORD";
+char clientID[] = "CLIENT_ID";
+
+
 #if (USE_TMP007 == 1)
 #include "Sensor_TMP007.h"
 Sensor_TMP007 myTMP007;
@@ -92,43 +98,12 @@ float BME280_pressure, BME280_temperature, BME280_humidity;
 const uint32_t period_ms = 10000;
 uint32_t chrono = 0;
 
-// Prototypes
-
-// Network name and password are in Credentials.h
-
-///
-/// @brief	Network name = SSID
-///
-char ssidWiFi[] = "ssidWiFi";
-
-///
-/// @brief	Network password
-///
-char passwordWiFi[] = "passwordWiFi";
-
-// Cayenne authentication info. This should be obtained from the Cayenne Dashboard.
-
-///
-/// @brief	User name, given by Cayenne
-///
-char usernameCayenne[] = "usernameCayenne";
-
-///
-/// @brief	Password, given by Cayenne
-///
-char passwordCayenne[] = "passwordCayenne";
-
-///
-/// @brief	Client ID, given by Cayenne
-///
-char clientIDCayenne[] = "clientIDCayenne";
-
 
 // Add setup code
 void setup()
 {
     Serial.begin(9600);
-    Cayenne.begin(usernameCayenne, passwordCayenne, clientIDCayenne, ssidWiFi, passwordWiFi);
+    Cayenne.begin(username, password, clientID, ssid, wifiPassword);
 
     Wire.begin();
 
