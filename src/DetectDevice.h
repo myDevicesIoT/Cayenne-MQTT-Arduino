@@ -67,7 +67,7 @@
         // Added support for CC3200 and other LaunchPads
         #elif defined(__CC3200R1M1RGC__)
         #define INFO_CPU  "CC3200R1M1RGC"
-        #define BLYNK_NO_FLOAT
+        #define NO_FLOAT
 
         #else
         #define INFO_CPU  "Other LaunchPad"
