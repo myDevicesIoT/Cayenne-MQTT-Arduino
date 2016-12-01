@@ -2,7 +2,7 @@
 The MIT License(MIT)
 
 Cayenne Arduino Client Library
-Copyright © 2016 myDevices
+Copyright ï¿½ 2016 myDevices
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
 documentation files(the "Software"), to deal in the Software without restriction, including without limitation
@@ -20,6 +20,10 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 
 #include "CayenneArduinoDefines.h"
 #include "CayenneMQTTClient/CayenneMQTTClient.h"
+
+#if defined(ENERGIA)
+#define F(x) x
+#endif
 
 const int MAX_CHANNEL_ARRAY_SIZE = 4;
 
@@ -115,11 +119,11 @@ public:
 	* Send device info
 	*/
 	void publishDeviceInfo() {
-		publishData(SYS_MODEL_TOPIC, CAYENNE_NO_CHANNEL, F(INFO_DEVICE));
+        publishData(SYS_MODEL_TOPIC, CAYENNE_NO_CHANNEL, F(INFO_DEVICE));
 		publishData(SYS_CPU_MODEL_TOPIC, CAYENNE_NO_CHANNEL, F(INFO_CPU));
 		publishData(SYS_CPU_SPEED_TOPIC, CAYENNE_NO_CHANNEL, F_CPU);
 		publishData(SYS_VERSION_TOPIC, CAYENNE_NO_CHANNEL, F(CAYENNE_VERSION));
-	}
+    }
 
 	/**
 	* Sends a measurement to a Cayenne channel
