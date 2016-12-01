@@ -1,5 +1,5 @@
 ///
-/// @mainpage	CC3200_Cayenne
+/// @mainpage	CC3200
 ///
 /// @details	Cayenne implementation for CC3200 LaunchPad and CC3100 BoosterPack for other LaunchPads
 /// @n
@@ -21,7 +21,7 @@
 
 
 ///
-/// @file		CC3200_Cayenne.ino
+/// @file		CC3200.ino
 /// @brief		Main sketch
 ///
 /// @details	Cayenne implementation for CC3200 LaunchPad and CC3100 BoosterPack for other LaunchPads

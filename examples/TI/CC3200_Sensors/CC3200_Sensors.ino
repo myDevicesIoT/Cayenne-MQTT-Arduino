@@ -1,5 +1,5 @@
 ///
-/// @mainpage	CC3200_Sensors_Cayenne
+/// @mainpage	CC3200_Sensors
 ///
 /// @details	Cayenne implementation for CC3200 LaunchPad and CC3100 BoosterPack for other LaunchPads
 /// @n
@@ -21,7 +21,7 @@
 
 
 ///
-/// @file		CC3200_Sensors_Cayenne.ino
+/// @file		CC3200_Sensors.ino
 /// @brief		Main sketch
 ///
 /// @details	Cayenne implementation for CC3200 LaunchPad and CC3100 BoosterPack for other LaunchPads
