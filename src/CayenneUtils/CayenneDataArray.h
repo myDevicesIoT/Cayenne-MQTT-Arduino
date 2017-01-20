@@ -31,7 +31,7 @@ namespace CayenneMQTT
 	* Class for manipulating a data array.
 	* @param BUFFER_SIZE Maximum buffer size to use for data array, in bytes.
 	*/
-	template<int BUFFER_SIZE = CAYENNE_MAX_PAYLOAD_SIZE>
+	template<int BUFFER_SIZE = CAYENNE_MAX_PAYLOAD_VALUE_SIZE>
 	class DataArray
 	{
 	public:
