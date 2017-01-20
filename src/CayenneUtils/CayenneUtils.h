@@ -40,15 +40,6 @@ extern "C" {
 enum CayenneReturnCode { CAYENNE_BUFFER_OVERFLOW = -2, CAYENNE_FAILURE = -1, CAYENNE_SUCCESS = 0 };
 
 /**
-* A unit/value pair used in Cayenne payloads.
-*/
-typedef struct CayenneValuePair
-{
-	const char* unit; /**< The data unit. */
-	const char* value; /**< The data value. */
-} CayenneValuePair;
-
-/**
 * Build a specified topic string.
 * @param[out] topicName Returned topic string
 * @param[in] length CayenneTopic buffer length

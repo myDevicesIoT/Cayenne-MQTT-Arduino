@@ -20,6 +20,7 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 
 #include "CayenneArduinoDefines.h"
 #include "CayenneMQTTClient/CayenneMQTTClient.h"
+#include "CayenneUtils/CayenneDataArray.h"
 
 const int MAX_CHANNEL_ARRAY_SIZE = 4;
 
@@ -256,7 +257,7 @@ public:
 		values.add(x, 1);
 		values.add(y, 1);
 		values.add(z, 1);
-		virtualWrite(channel, values.getArray(), F(TYPE_ACCELERATION), F(UNIT_GRAVITY));
+		virtualWrite(channel, values.getString(), F(TYPE_ACCELERATION), F(UNIT_GRAVITY));
 	}
 	
 	/**
@@ -273,7 +274,7 @@ public:
 		values.add(latitude, 5);
 		values.add(longitude, 5);
 		values.add(altitude, 1);
-		virtualWrite(channel, values.getArray(), F(TYPE_GPS), F(UNIT_METER));
+		virtualWrite(channel, values.getString(), F(TYPE_GPS), F(UNIT_METER));
 	}
 
 	/**

@@ -21,7 +21,6 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 #include "MQTTClient.h"
 #include "../CayenneUtils/CayenneDefines.h"
 #include "../CayenneUtils/CayenneUtils.h"
-#include "../CayenneUtils/CayenneDataArray.h"
 
 #if defined(__cplusplus)
 extern "C" {

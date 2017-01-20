@@ -197,18 +197,12 @@ namespace CayenneMQTT
 #endif
 		/**
 		* Get the value string.
-		* @return Pointer to the value string.
+		* @return If there are multiple values this will return the full array string with brackets, otherwise just the single value string without brackets.
 		*/
 		const char* getString() const {
+			if (_valueCount > 1)
+				return _buffer;
 			return &_buffer[1];
-		}
-
-		/**
-		* Get the value array.
-		* @return Pointer to the value array string.
-		*/
-		const char* getArray() const {
-			return _buffer;
 		}
 
 		/**
@@ -227,96 +221,6 @@ namespace CayenneMQTT
 }
 
 typedef CayenneMQTT::DataArray<> CayenneDataArray;
-
-#else
-
-	// C version of the data array. Requires source file to be compiled and linked.
-
-	typedef struct CayenneDataArray
-	{
-		CayenneValuePair values[CAYENNE_MAX_MESSAGE_VALUES];
-		unsigned int valueCount;
-		char* buffer;
-		size_t bufferSize;
-		size_t bufferIndex;
-	} CayenneDataArray;
-
-	/**
-	* Initialize a data array of unit/value pairs.
-	* @param[out] dataArray The initialized data array
-	* @param[in] buffer Buffer for storing unit/value pairs. This buffer should be available for as long as the data array is used.
-	* @param[in] bufferSize Size of the buffer
-	*/
-	DLLExport void CayenneDataArrayInit(CayenneDataArray* dataArray, char* buffer, unsigned int bufferSize);
-
-	/**
-	* Add the specified unit/value pair to the array.
-	* @param[in] dataArray The data array to add values to
-	* @param[in] unit The unit to add
-	* @param[in] value The value to add
-	* @return CAYENNE_SUCCESS if unit/value pair was add, CAYENNE_FAILURE otherwise
-	*/
-	DLLExport int CayenneDataArrayAdd(CayenneDataArray* dataArray, const char* unit, const char* value);
-
-	/**
-	* Add the specified unit/value pair to the array.
-	* @param[in] dataArray The data array to add values to
-	* @param[in] unit The unit to add
-	* @param[in] value The value to add
-	* @return CAYENNE_SUCCESS if unit/value pair was add, CAYENNE_FAILURE otherwise
-	*/
-	DLLExport int CayenneDataArrayAddInt(CayenneDataArray* dataArray, const char* unit, int value);
-
-	/**
-	* Add the specified unit/value pair to the array.
-	* @param[in] dataArray The data array to add values to
-	* @param[in] unit The unit to add
-	* @param[in] value The value to add
-	* @return CAYENNE_SUCCESS if unit/value pair was add, CAYENNE_FAILURE otherwise
-	*/
-	DLLExport int CayenneDataArrayAddUInt(CayenneDataArray* dataArray, const char* unit, unsigned int value);
-
-	/**
-	* Add the specified unit/value pair to the array.
-	* @param[in] dataArray The data array to add values to
-	* @param[in] unit The unit to add
-	* @param[in] value The value to add
-	* @return CAYENNE_SUCCESS if unit/value pair was add, CAYENNE_FAILURE otherwise
-	*/
-	DLLExport int CayenneDataArrayAddLong(CayenneDataArray* dataArray, const char* unit, long value);
-
-	/**
-	* Add the specified unit/value pair to the array.
-	* @param[in] dataArray The data array to add values to
-	* @param[in] unit The unit to add
-	* @param[in] value The value to add
-	* @return CAYENNE_SUCCESS if unit/value pair was add, CAYENNE_FAILURE otherwise
-	*/
-	DLLExport int CayenneDataArrayAddULong(CayenneDataArray* dataArray, const char* unit, unsigned long value);
-
-	/**
-	* Add the specified unit/value pair to the array.
-	* @param[in] dataArray The data array to add values to
-	* @param[in] unit The unit to add
-	* @param[in] value The value to add
-	* @return CAYENNE_SUCCESS if unit/value pair was add, CAYENNE_FAILURE otherwise
-	*/
-	DLLExport int CayenneDataArrayAddDouble(CayenneDataArray* dataArray, const char* unit, double value);
-
-	/**
-	* Add the specified unit/value pair to the array.
-	* @param[in] dataArray The data array to add values to
-	* @param[in] unit The unit to add
-	* @param[in] value The value to add
-	* @return CAYENNE_SUCCESS if unit/value pair was add, CAYENNE_FAILURE otherwise
-	*/
-	DLLExport int CayenneDataArrayAddFloat(CayenneDataArray* dataArray, const char* unit, float value);
-
-	/**
-	* Clear the data array.
-	* @param[in] dataArray The data array to clear
-	*/
-	DLLExport void CayenneDataArrayClear(CayenneDataArray* dataArray);
 
 #endif
 
