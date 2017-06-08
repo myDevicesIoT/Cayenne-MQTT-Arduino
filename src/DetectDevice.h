@@ -31,8 +31,8 @@
     #define INFO_CPU      "ATmega32U4"
     #elif defined(__SAM3X8E__)
     #define INFO_CPU      "AT91SAM3X8E"
-	#elif defined(__SAMD21G18A__)
-	#define INFO_CPU      "ATSAMD21G18"
+    #elif defined(__SAMD21G18A__)
+    #define INFO_CPU      "ATSAMD21G18"
 
     /******************************************
      * ATtiny
