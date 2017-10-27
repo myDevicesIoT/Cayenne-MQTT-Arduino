@@ -67,7 +67,7 @@ Code adapted from Blynk library BlynkHandlers.h. Copyright info below.
 #define CAYENNE_OUT(channel) void OutputHandler ## channel  (Request& request)
 
 #define CAYENNE_IN_DEFAULT()   CAYENNE_IN(Default)
-#define CAYENNE_OUT_DEFAULT()  CAYENNE_OUT(Default)
+#define CAYENNE_OUT_DEFAULT()  void CayenneOutDefault()
 
 // Additional handlers
 #define CAYENNE_CONNECTED()    void CayenneConnected()
