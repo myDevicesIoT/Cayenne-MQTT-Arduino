@@ -1,7 +1,7 @@
 /*
 Cayenne SendDataOnRequest Example
 
-This example sketch shows how a value can be sent from Arduino to the Cayenne Dashboard in response to a Virtual Pin request.
+This example sketch shows how a value can be sent from Arduino to the Cayenne Dashboard in response to a Virtual Channel request.
 
 The CayenneMQTT Library is required to run this sketch. If you have not already done so you can install it from the Arduino IDE Library Manager.
 
@@ -19,8 +19,8 @@ char username[] = "MQTT_USERNAME";
 char password[] = "MQTT_PASSWORD";
 char clientID[] = "CLIENT_ID";
 
-// Use Virtual Pin 5 for uptime display.
-#define VIRTUAL_PIN 5
+// Use Virtual Channel 5 for uptime display.
+#define VIRTUAL_CHANNEL 5
 
 void setup()
 {
@@ -33,10 +33,10 @@ void loop()
 	Cayenne.loop();
 }
 
-// This function is called when a Cayenne widget requests data for Virtual Pin 5.
-CAYENNE_OUT(VIRTUAL_PIN)
+// This function is called at intervals to send data to Cayenne.
+CAYENNE_OUT(VIRTUAL_CHANNEL)
 {
-	CAYENNE_LOG("Data requested for Virtual Pin %d", VIRTUAL_PIN);
-	// This command writes Arduino's uptime in seconds to the Virtual Pin.
-	Cayenne.virtualWrite(VIRTUAL_PIN, millis() / 1000);
+	CAYENNE_LOG("Send data for Virtual Channel %d", VIRTUAL_CHANNEL);
+	// This command writes Arduino's uptime in seconds to the Virtual Channel.
+	Cayenne.virtualWrite(VIRTUAL_CHANNEL, millis() / 1000);
 }

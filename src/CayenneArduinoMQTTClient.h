@@ -90,7 +90,7 @@ public:
 	*/
 	void loop(int yieldTime = 1000) {
 		CayenneMQTTYield(&_mqttClient, yieldTime);
-		static unsigned long lastPoll = millis();
+		static unsigned long lastPoll = millis() - 15000;
 		if (millis() - lastPoll > 15000) {
 			lastPoll = millis();
 			pollVirtualChannels();
@@ -277,6 +277,17 @@ public:
 	void hectoPascalWrite(unsigned int channel, float value)
 	{
 		virtualWrite(channel, value, F(TYPE_BAROMETRIC_PRESSURE), F(UNIT_HECTOPASCAL));
+	}
+
+	/**
+	* Sends a digital sensor value to a Cayenne channel
+	*
+	* @param channel  Cayenne channel number
+	* @param value  Value to be sent
+	*/
+	void digitalSensorWrite(unsigned int channel, float value)
+	{
+		virtualWrite(channel, value, F(TYPE_DIGITAL_SENSOR), F(UNIT_DIGITAL));
 	}
 
 	/**

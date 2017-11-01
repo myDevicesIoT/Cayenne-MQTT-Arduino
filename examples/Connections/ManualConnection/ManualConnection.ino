@@ -3,9 +3,9 @@
 //#define CAYENNE_DEBUG
 #define CAYENNE_PRINT Serial
 #include <CayenneMQTTEthernet.h>
-//#include <CayenneMQTTEthernetW5500.h> // Uncomment this and comment out CayenneEthernet.h to use an Ethernet 2 shield or other Ethernet W5500 shield.
+//#include <CayenneMQTTEthernetW5500.h> // Uncomment this and comment out CayenneMQTTEthernet.h to use an Ethernet 2 shield or other Ethernet W5500 shield.
                                         // You will need the Ethernet2 library installed. See the ArduinoEthernetW5500 example sketch for more info.
-//#include <CayenneMQTTEthernetW5200.h> // Uncomment this and comment out CayenneEthernet.h to use an Ethernet W5200 shield.
+//#include <CayenneMQTTEthernetW5200.h> // Uncomment this and comment out CayenneMQTTEthernet.h to use an Ethernet W5200 shield.
                                         // You will need the EthernetW5200 library installed. See the ArduinoEthernetW5200 example sketch for more info.
 
 // Cayenne authentication info. This should be obtained from the Cayenne Dashboard.

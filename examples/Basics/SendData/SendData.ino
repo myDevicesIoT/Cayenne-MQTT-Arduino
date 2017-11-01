@@ -1,7 +1,7 @@
 /*
 Cayenne SendData Example
 
-This example sketch shows how a value can be sent from Arduino to the Cayenne Dashboard on a Virtual Pin.
+This example sketch shows how a value can be sent from Arduino to the Cayenne Dashboard on a Virtual Channel.
 
 The CayenneMQTT Library is required to run this sketch. If you have not already done so you can install it from the Arduino IDE Library Manager.
 
@@ -28,7 +28,7 @@ char clientID[] = "CLIENT_ID";
 
 SimpleTimer timer;
 
-// This function sends Arduino's up time every 5 seconds to Virtual Pin 5.
+// This function sends Arduino's up time to Virtual Channel 5.
 void sendUptime()
 {
 	// Send values using the virtualWrite function. Cayenne currently accepts int and float values.
