@@ -29,7 +29,7 @@ char password[] = "MQTT_PASSWORD";
 char clientID[] = "CLIENT_ID";
 
 #define SENSOR_PIN 0
-#define VIRTUAL_CHANNEL 5
+#define VIRTUAL_CHANNEL 1
 
 // Resistance of the resistor. Currently set to 10k but this can be set to the measured resistance of your
 // resistor for greater accuracy.

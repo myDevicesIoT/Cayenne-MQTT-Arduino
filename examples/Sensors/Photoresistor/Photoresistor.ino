@@ -29,7 +29,7 @@ char password[] = "MQTT_PASSWORD";
 char clientID[] = "CLIENT_ID";
 
 #define SENSOR_PIN 0
-#define VIRTUAL_CHANNEL 5
+#define VIRTUAL_CHANNEL 1
 
 void setup()
 {
