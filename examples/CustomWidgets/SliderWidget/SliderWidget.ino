@@ -9,9 +9,9 @@ Steps:
 1. In the Cayenne Dashboard add a new Slider Custom Widget.
 2. Select a virtual channel number.
 3. Set the slider widget min value to 0 and max value to 255.
-4. Set VIRTUAL_CHANNEL to the virtual channel number you selected.
+4. Set the VIRTUAL_CHANNEL value below to the virtual channel number you selected.
 5. Attach an output device to a digital PWM pin (3, 5, 6, 9, 10, and 11 on most Arduino boards).
-6. Set ACTUATOR_PIN to the digital PWM pin number you selected.
+6. Set the ACTUATOR_PIN value below to the digital PWM pin number you selected.
 7. Set the Cayenne authentication info to match the authentication info from the Dashboard.
 8. Compile and upload this sketch.
 9. Once the Arduino connects to the Dashboard you can use the slider to change PWM values.

@@ -15,7 +15,7 @@ Steps:
 2. Select a virtual channel number for the widget.
 3. Set the VIRTUAL_CHANNEL value below to virtual channel you selected.
 4. Set up your valve schematic and attach it to a digital pin.
-5. Set ACTUATOR_PIN to the digital pin number you selected.
+5. Set the ACTUATOR_PIN value below to the digital pin number you selected.
 6. Set the Cayenne authentication info to match the authentication info from the Dashboard.
 7. Compile and upload this sketch.
 8. Once the Arduino connects to the Dashboard you can use the widget button to open and close the valve.

@@ -12,7 +12,7 @@ Steps:
 4. Set min value to 0 and max value to 1.
 5. Set the VIRTUAL_CHANNEL value below to the virtual channel you selected.
 6. Connect the Servo's legs to GND, VCC (5.0), and a digital pin.
-7. Set ACTUATOR_PIN to the pin number you selected.
+7. Set the ACTUATOR_PIN value below to the digital pin number you selected.
 8. Set the Cayenne authentication info to match the authentication info from the Dashboard.
 9. Compile and upload this sketch.
 10. Once the Arduino connects to the Dashboard you can use the slider to change the servo position.

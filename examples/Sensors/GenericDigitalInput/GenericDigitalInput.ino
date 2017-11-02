@@ -23,7 +23,7 @@ char username[] = "MQTT_USERNAME";
 char password[] = "MQTT_PASSWORD";
 char clientID[] = "CLIENT_ID";
 
-#define SENSOR_PIN 0
+#define SENSOR_PIN 5 // Do not use digital pins 0 or 1 since those conflict with the use of Serial.
 #define VIRTUAL_CHANNEL 1
 
 void setup()

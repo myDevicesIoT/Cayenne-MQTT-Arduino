@@ -14,7 +14,7 @@ Steps:
 2. Select a virtual channel number for the widget.
 3. Set the VIRTUAL_CHANNEL value below to the virtual channel you selected.
 4. Set up your motor schematic and attach it to a PWM pin (3, 5, 6, 9, 10, and 11 on most Arduino boards).
-5. Set ACTUATOR_PIN to the PWM pin number you selected.
+5. Set the ACTUATOR_PIN value below to the PWM pin number you selected.
 6. Set the Cayenne authentication info to match the authentication info from the Dashboard.
 7. Compile and upload this sketch.
 8. Once the Arduino connects to the Dashboard you can use the widget button to turn the motor on and off.
