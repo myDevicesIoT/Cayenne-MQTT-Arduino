@@ -1,6 +1,4 @@
 /*
-Cayenne ReceiveData Example
-
 This example sketch shows how a value can be sent from the Cayenne Dashboard to the Arduino on a Virtual Channel.
 
 The CayenneMQTT Library is required to run this sketch. If you have not already done so you can install it from the Arduino IDE Library Manager.
