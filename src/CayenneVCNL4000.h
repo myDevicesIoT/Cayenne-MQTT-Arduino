@@ -2,7 +2,7 @@
 The MIT License(MIT)
 
 Cayenne Arduino Client Library
-Copyright © 2016 myDevices
+Copyright Â© 2016 myDevices
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
 documentation files(the "Software"), to deal in the Software without restriction, including without limitation
@@ -161,24 +161,13 @@ private:
 		uint8_t data;
 
 		Wire.beginTransmission(VCNL4000_ADDRESS);
-#if ARDUINO >= 100
 		Wire.write(address);
-#else
-		Wire.send(address);
-#endif
 		Wire.endTransmission();
 
 		delayMicroseconds(170);  // delay required
 
 		Wire.requestFrom(VCNL4000_ADDRESS, 1);
-		unsigned int start = millis();
-		while (!Wire.available() && (millis() - start < TIMEOUT));
-
-#if ARDUINO >= 100
 		return Wire.read();
-#else
-		return Wire.receive();
-#endif
 	}
 
 
@@ -188,29 +177,13 @@ private:
 		uint16_t data;
 
 		Wire.beginTransmission(VCNL4000_ADDRESS);
-#if ARDUINO >= 100
 		Wire.write(address);
-#else
-		Wire.send(address);
-#endif
 		Wire.endTransmission();
 
 		Wire.requestFrom(VCNL4000_ADDRESS, 2);
-		unsigned int start = millis();
-		while (!Wire.available() && (millis() - start < TIMEOUT));
-#if ARDUINO >= 100
 		data = Wire.read();
 		data <<= 8;
-		start = millis();
-		while (!Wire.available() && (millis() - start < TIMEOUT));
 		data |= Wire.read();
-#else
-		data = Wire.receive();
-		data <<= 8;
-		start = millis();
-		while (!Wire.available() && (millis() - start < TIMEOUT));
-		data |= Wire.receive();
-#endif
 
 		return data;
 	}
@@ -219,13 +192,8 @@ private:
 	void write8(uint8_t address, uint8_t data)
 	{
 		Wire.beginTransmission(VCNL4000_ADDRESS);
-#if ARDUINO >= 100
 		Wire.write(address);
 		Wire.write(data);
-#else
-		Wire.send(address);
-		Wire.send(data);
-#endif
 		Wire.endTransmission();
 	}
 
