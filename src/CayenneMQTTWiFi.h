@@ -19,6 +19,7 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 #define _CAYENNEMQTTWIFI_h
 
 #define WRITE_CHUNK_SIZE 80 // The chunk size to use when sending data to prevent sending too much data at once which is an issue with WiFi Shield R3.
+#define INFO_CONNECTION "WiFi"
 
 #include <WiFi.h>
 #include "CayenneUtils/CayenneDefines.h"

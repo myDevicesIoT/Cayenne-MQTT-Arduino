@@ -18,6 +18,8 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 #ifndef _CAYENNEMQTTYUN_h
 #define _CAYENNEMQTTYUN_h
 
+#define INFO_CONNECTION "Yun"
+
 #include <Bridge.h>
 #include "CayenneUtils/CayenneDefines.h"
 #include "CayenneMQTTYunClient.h"

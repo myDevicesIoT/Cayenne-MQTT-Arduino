@@ -18,6 +18,8 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 #ifndef _CAYENNEMQTTETHERNETW5500_h
 #define _CAYENNEMQTTETHERNETW5500_h
 
+#define INFO_CONNECTION "W5500"
+
 #include "CayenneUtils/CayenneDefines.h"
 #include <Ethernet2.h>
 #include "CayenneMQTTEthernetClient.h"
