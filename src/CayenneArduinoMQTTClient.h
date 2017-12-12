@@ -281,7 +281,7 @@ public:
 		values.add(x, 1);
 		values.add(y, 1);
 		values.add(z, 1);
-		virtualWrite(channel, values.getString(), F(TYPE_ACCELERATION), F(UNIT_GRAVITY));
+		virtualWrite(channel, values.getString(), F(TYPE_ACCELERATION), F(UNIT_G));
 	}
 	
 	/**
@@ -388,7 +388,7 @@ private:
 	* @param subkey Optional subkey to use for a key,subkey=data pair
 	*/
 	static void publishData(CayenneTopic topic, unsigned int channel, const char* data, const char* key, const char* subkey) {
-		CAYENNE_LOG_DEBUG("Publish: topic %d, channel %u, key %s, subkey %s, data %s", topic, channel, key, subkey, value);
+		CAYENNE_LOG_DEBUG("Publish: topic %d, channel %u, key %s, subkey %s, data %s", topic, channel, key, subkey, data);
 		CayenneMQTTPublishData(&_mqttClient, NULL, topic, channel, key, subkey, data);
 	}
 
