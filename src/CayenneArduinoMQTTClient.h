@@ -20,6 +20,7 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 
 #include "CayenneArduinoDefines.h"
 #include "CayenneMQTTClient/CayenneMQTTClient.h"
+#include "CayenneUtils/CayenneDataArray.h"
 
 const int MAX_CHANNEL_ARRAY_SIZE = 4;
 
@@ -163,30 +164,6 @@ public:
 	}
 
 	/**
-	* Sends an array of measurements to a Cayenne channel
-	*
-	* @param channel  Cayenne channel number
-	* @param values  Array of values to be sent
-	* @param type  Measurement type
-	*/
-	void virtualWrite(unsigned int channel, const CayenneDataArray& values, const char* type)
-	{
-		publishData(DATA_TOPIC, channel, values.getArray(), values.getCount(), type);
-	}
-
-	/**
-	* Sends an array of measurements to a Cayenne channel
-	*
-	* @param channel  Cayenne channel number
-	* @param values  Array of values to be sent
-	* @param type  Measurement type
-	*/
-	void virtualWrite(unsigned int channel, const CayenneDataArray& values, const __FlashStringHelper* type)
-	{
-		publishData(DATA_TOPIC, channel, values.getArray(), values.getCount(), type);
-	}
-
-	/**
 	* Sends a response after processing a command
 	*
 	* @param channel  Cayenne channel number
@@ -291,6 +268,40 @@ public:
 	}
 
 	/**
+	* Sends an acceleration value array to a Cayenne channel
+	*
+	* @param channel  Cayenne channel number
+	* @param x  Acceration on the X-axis
+	* @param y  Acceration on the Y-axis
+	* @param z  Acceration on the Z-axis
+	*/
+	void accelWrite(unsigned int channel, float x, float y, float z)
+	{
+		CayenneDataArray values;
+		values.add(x, 1);
+		values.add(y, 1);
+		values.add(z, 1);
+		virtualWrite(channel, values.getString(), F(TYPE_ACCELERATION), F(UNIT_G));
+	}
+	
+	/**
+	* Sends a GPS value array to a Cayenne channel
+	*
+	* @param channel  Cayenne channel number
+	* @param latitude  Latitude in degrees
+	* @param longitude  Longitude in degrees
+	* @param altitude  Altitude in meters
+	*/
+	void gpsWrite(unsigned int channel, float latitude, float longitude, float altitude)
+	{
+		CayenneDataArray values;
+		values.add(latitude, 5);
+		values.add(longitude, 5);
+		values.add(altitude, 1);
+		virtualWrite(channel, values.getString(), F(TYPE_GPS), F(UNIT_METER));
+	}
+
+	/**
 	* Requests Server to re-send current values for all widgets.
 	*/
 	void syncAll()
@@ -343,9 +354,9 @@ private:
 	*/
 	template <typename T>
 	static void publishData(CayenneTopic topic, unsigned int channel, const T& data, const char* key = NULL, const char* subkey = NULL) {
-		CayenneDataArray values;
-		values.add(subkey, data);
-		publishData(topic, channel, values.getArray(), values.getCount(), key);
+		CayenneDataArray value;
+		value.add(data);
+		publishData(topic, channel, value.getString(), key, subkey);
 	}
 
 	/**
@@ -358,39 +369,42 @@ private:
 	*/
 	template <typename T>
 	static void publishData(CayenneTopic topic, unsigned int channel, const T& data, const __FlashStringHelper* key, const __FlashStringHelper* subkey = NULL) {
-		char keyBuffer[MAX_TYPE_LENGTH + 1];
-		CayenneDataArray values;
-		values.add(subkey, data);
+		char keyBuffer[MAX_TYPE_LENGTH + 1] = { 0 };
+		char subkeyBuffer[MAX_UNIT_LENGTH + 1] = { 0 };
+		CayenneDataArray value;
+		value.add(data);
 		CAYENNE_MEMCPY(keyBuffer, reinterpret_cast<const char *>(key), CAYENNE_STRLEN(reinterpret_cast<const char *>(key)) + 1);
-		publishData(topic, channel, values.getArray(), values.getCount(), keyBuffer);
+		if (subkey)
+			CAYENNE_MEMCPY(subkeyBuffer, reinterpret_cast<const char *>(subkey), CAYENNE_STRLEN(reinterpret_cast<const char *>(subkey)) + 1);
+		publishData(topic, channel, value.getString(), keyBuffer, subkeyBuffer);
 	}
 
 	/**
 	* Publish value array using specified topic suffix
 	* @param topic Cayenne topic
 	* @param channel Cayenne channel number
-	* @param values  Array of values to be sent
-	* @param valueCount  Count of values in array
+	* @param data Data to send
 	* @param key Optional key to use for a key=data pair
+	* @param subkey Optional subkey to use for a key,subkey=data pair
 	*/
-	static void publishData(CayenneTopic topic, unsigned int channel, const CayenneValuePair values[], size_t valueCount, const char* key) {
-		CAYENNE_LOG_DEBUG("Publish: topic %d, channel %u, value %s, subkey %s, key %s", topic, channel, values[0].value, values[0].unit, key);
-		CayenneMQTTPublishDataArray(&_mqttClient, NULL, topic, channel, key, values, valueCount);
+	static void publishData(CayenneTopic topic, unsigned int channel, const char* data, const char* key, const char* subkey) {
+		CAYENNE_LOG_DEBUG("Publish: topic %d, channel %u, key %s, subkey %s, data %s", topic, channel, key, subkey, data);
+		CayenneMQTTPublishData(&_mqttClient, NULL, topic, channel, key, subkey, data);
 	}
 
 	/**
 	* Publish value array using specified topic suffix
 	* @param topic Cayenne topic
 	* @param channel Cayenne channel number
-	* @param values  Array of values to be sent
-	* @param valueCount  Count of values in array
+	* @param data Data to send
 	* @param key Optional key to use for a key=data pair
+	* @param subkey Optional subkey to use for a key,subkey=data pair
 	*/
-	static void publishData(CayenneTopic topic, unsigned int channel, const CayenneValuePair values[], size_t valueCount, const __FlashStringHelper* key) {
+	static void publishData(CayenneTopic topic, unsigned int channel, const char* data, const __FlashStringHelper* key, const char* subkey) {
 		char keyBuffer[MAX_TYPE_LENGTH + 1];
 		CAYENNE_MEMCPY(keyBuffer, reinterpret_cast<const char *>(key), CAYENNE_STRLEN(reinterpret_cast<const char *>(key)) + 1);
-		CAYENNE_LOG_DEBUG("Publish: topic %d, channel %u, value %s, subkey %s, key %s", topic, channel, values[0].value, values[0].unit, keyBuffer);
-		CayenneMQTTPublishDataArray(&_mqttClient, NULL, topic, channel, keyBuffer, values, valueCount);
+		CAYENNE_LOG_DEBUG("Publish: topic %d, channel %u, key %s, subkey %s, data %s", topic, channel, keyBuffer, subkey, data);
+		CayenneMQTTPublishData(&_mqttClient, NULL, topic, channel, keyBuffer, subkey, data);
 	}
 
 	/**
@@ -468,8 +482,8 @@ void handleMessage(CayenneMessageData* messageData) {
 	Request request = { messageData->channel };
 	const char* response = NULL;
 	CayenneMessage message(messageData);
-	if (strlen(messageData->values[0].value)) {
-		CAYENNE_LOG_DEBUG("In: value %s, channel %d", messageData->values[0].value, request.channel);
+	if (strlen(messageData->value)) {
+		CAYENNE_LOG_DEBUG("In: value %s, channel %d", messageData->value, request.channel);
 		InputHandlerFunction handler = GetInputHandler(request.channel);
 		if (handler && handler != InputHandler) {
 			handler(request, message);
@@ -483,14 +497,14 @@ void handleMessage(CayenneMessageData* messageData) {
 	}
 	if(response == NULL) {
 		// If there was no error, we send the new channel state, which should be the command value we received.
-		CayenneArduinoMQTTClient::publishState(DATA_TOPIC, messageData->channel, messageData->values[0].value);
+		CayenneArduinoMQTTClient::publishState(DATA_TOPIC, messageData->channel, messageData->value);
 	}
 	CayenneArduinoMQTTClient::responseWrite(response, messageData->id);
 }
 
 #ifdef DIGITAL_AND_ANALOG_SUPPORT
 void handleAnalogMessage(CayenneMessageData* messageData) {
-	float value = atof(messageData->values[0].value);
+	float value = atof(messageData->value);
 	char* response = NULL;
 	if (value >= 0 && value <= 1) {
 		double test = value * 255;
@@ -501,18 +515,18 @@ void handleAnalogMessage(CayenneMessageData* messageData) {
 	else {
 		response = ERROR_INCORRECT_PARAM;
 	}
-	CayenneArduinoMQTTClient::responseWrite(messageData->channel, response, messageData->id);
+	CayenneArduinoMQTTClient::responseWrite(response, messageData->id);
 }
 
 void handleDigitalMessage(CayenneMessageData* messageData) {
 	char* response = NULL;
-	if (messageData->values[0].value && strlen(messageData->values[0].value) == 1) {
-		CAYENNE_LOG_DEBUG("dw %s, channel %d", messageData->values[0].value, messageData->channel);
-		if (messageData->values[0].value[0] == '0') {
+	if (messageData->value && strlen(messageData->value) == 1) {
+		CAYENNE_LOG_DEBUG("dw %s, channel %d", messageData->value, messageData->channel);
+		if (messageData->value[0] == '0') {
 			digitalWrite(messageData->channel, LOW);
 			CayenneArduinoMQTTClient::publishState(DIGITAL_TOPIC, messageData->channel, LOW);
 		}
-		else if (messageData->values[0].value[0] == '1') {
+		else if (messageData->value[0] == '1') {
 			digitalWrite(messageData->channel, HIGH);
 			CayenneArduinoMQTTClient::publishState(DIGITAL_TOPIC, messageData->channel, HIGH);
 		}
@@ -523,7 +537,7 @@ void handleDigitalMessage(CayenneMessageData* messageData) {
 	else {
 		response = ERROR_INCORRECT_PARAM;
 	}
-	CayenneArduinoMQTTClient::responseWrite(messageData->channel, response, messageData->id);
+	CayenneArduinoMQTTClient::responseWrite(response, messageData->id);
 }
 #endif
 
@@ -539,13 +553,13 @@ void CayenneMessageArrived(CayenneMessageData* message) {
 		handleDigitalMessage(message);
 		break;
 	case DIGITAL_CONFIG_TOPIC:
-		configChannel(CayenneArduinoMQTTClient::digitalChannels, message->channel, message->values[0].value);
+		configChannel(CayenneArduinoMQTTClient::digitalChannels, message->channel, message->value);
 		break;
 	case ANALOG_COMMAND_TOPIC:
 		handleAnalogMessage(message);
 		break;
 	case ANALOG_CONFIG_TOPIC:
-		configChannel(CayenneArduinoMQTTClient::analogChannels, message->channel, message->values[0].value);
+		configChannel(CayenneArduinoMQTTClient::analogChannels, message->channel, message->value);
 		break;
 #endif
 	default:
@@ -555,14 +569,11 @@ void CayenneMessageArrived(CayenneMessageData* message) {
 //			CAYENNE_PRINT.print(message->type);
 //			CAYENNE_PRINT.print(", ");
 //		}
-//		for (int i = 0; i < message->valueCount; ++i) {
-//			if (message->values[i].unit) {
-//				CAYENNE_PRINT.print(message->values[i].unit);
-//				CAYENNE_PRINT.print("=");
-//			}
-//			CAYENNE_PRINT.print(message->values[i].value);
-//			CAYENNE_PRINT.print(" ");
+//		if (message->unit) {
+//			CAYENNE_PRINT.print(message->unit);
+//			CAYENNE_PRINT.print("=");
 //		}
+//		CAYENNE_PRINT.print(message->value);
 //		CAYENNE_PRINT.println();
 //#endif
 		break;
