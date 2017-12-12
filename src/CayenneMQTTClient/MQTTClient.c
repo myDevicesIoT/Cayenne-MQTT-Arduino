@@ -228,6 +228,11 @@ int keepalive(MQTTClient* c)
 				TimerCountdown(&c->ping_response_timer, c->keepAliveInterval);
 				c->ping_outstanding = 1;
 			}
+			else if (rc == MQTT_FAILURE && TimerIsExpired(&c->last_received_timer))
+			{
+				//If the ping packet failed and the last received timer has expired assume we are disconnected
+				c->isconnected = 0;
+			}
         }
 		else if (TimerIsExpired(&c->ping_response_timer))
 		{

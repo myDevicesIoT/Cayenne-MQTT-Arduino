@@ -28,8 +28,9 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 #define TYPE_RELATIVE_HUMIDITY "rel_hum" // Relative Humidity
 #define TYPE_TEMPERATURE "temp" // Temperature
 #define TYPE_VOLTAGE "voltage" // Voltage
+#define TYPE_DIGITAL_SENSOR "digital_sensor" // Voltage
 
-#define MAX_TYPE_LENGTH 7
+#define MAX_TYPE_LENGTH 14
 
 // Unit types
 #define UNIT_UNDEFINED "null"
@@ -39,6 +40,7 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 #define UNIT_RATIO "r" // Ratio
 #define UNIT_VOLTS "v" // Volts
 #define UNIT_LUX "lux" // Lux
+#define UNIT_MILLIMETER "mm" // Millimeter
 #define UNIT_CENTIMETER "cm" // Centimeter
 #define UNIT_METER "m" // Meter
 #define UNIT_DIGITAL "d" // Digital (0/1)

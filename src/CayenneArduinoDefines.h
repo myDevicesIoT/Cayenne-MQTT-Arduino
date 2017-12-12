@@ -41,8 +41,11 @@ Logging code adapted from Blynk library BlynkDebug.h. Copyright info below.
 	#endif
 #endif
 
+#include <stdio.h>
+#include <stdarg.h>
+
 #ifdef CAYENNE_PRINT
-	static void log(const char* PROGMEM message, ...)
+	static void log(const char* CAYENNE_PROGMEM message, ...)
 	{
 		va_list args;
 		va_start(args, message);
