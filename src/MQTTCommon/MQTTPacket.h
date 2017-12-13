@@ -18,8 +18,6 @@
 #ifndef MQTTPACKET_H_
 #define MQTTPACKET_H_
 
-#include <stddef.h>
-
 #if defined(__cplusplus) /* If this is a C++ compiler, use C linkage */
 extern "C" {
 #endif
@@ -76,7 +74,7 @@ typedef union
 
 typedef struct
 {
-	size_t len;
+	int len;
 	char* data;
 } MQTTLenString;
 
@@ -88,20 +86,20 @@ typedef struct
 
 #define MQTTString_initializer {NULL, {0, NULL}}
 
-size_t MQTTstrlen(MQTTString mqttstring);
+int MQTTstrlen(MQTTString mqttstring);
 
 #include "MQTTConnect.h"
 #include "MQTTPublish.h"
 #include "MQTTSubscribe.h"
 #include "MQTTUnsubscribe.h"
 
-int MQTTSerialize_ack(unsigned char* buf, size_t buflen, unsigned char type, unsigned char dup, unsigned short packetid);
-int MQTTDeserialize_ack(unsigned char* packettype, unsigned char* dup, unsigned short* packetid, unsigned char* buf, size_t buflen);
+int MQTTSerialize_ack(unsigned char* buf, int buflen, unsigned char type, unsigned char dup, unsigned short packetid);
+int MQTTDeserialize_ack(unsigned char* packettype, unsigned char* dup, unsigned short* packetid, unsigned char* buf, int buflen);
 
-size_t MQTTPacket_len(size_t rem_len);
+int MQTTPacket_len(int rem_len);
 int MQTTPacket_equals(MQTTString* a, char* b);
 
-int MQTTPacket_encode(unsigned char* buf, size_t length);
+int MQTTPacket_encode(unsigned char* buf, int length);
 int MQTTPacket_decode(int (*getcharfn)(unsigned char*, int), int* value);
 int MQTTPacket_decodeBuf(unsigned char* buf, int* value);
 
