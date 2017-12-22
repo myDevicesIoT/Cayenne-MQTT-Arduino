@@ -285,7 +285,7 @@ public:
 	* @param channel  Cayenne channel number
 	* @param value  Value to be sent
 	*/
-	void digitalSensorWrite(unsigned int channel, float value)
+	void digitalSensorWrite(unsigned int channel, int value)
 	{
 		virtualWrite(channel, value, F(TYPE_DIGITAL_SENSOR), F(UNIT_DIGITAL));
 	}
