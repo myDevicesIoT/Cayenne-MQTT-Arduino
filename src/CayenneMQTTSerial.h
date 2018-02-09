@@ -18,6 +18,8 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 #ifndef _CAYENNEMQTTSERIAL_h
 #define _CAYENNEMQTTSERIAL_h
 
+#define INFO_CONNECTION "Serial"
+
 #include "Client.h"
 #include "CayenneUtils/CayenneDefines.h"
 #include "CayenneMQTTSerialClient.h"

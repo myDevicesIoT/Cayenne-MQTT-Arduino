@@ -25,6 +25,8 @@ Code adapted from Blynk library BlynkSimpleShieldEsp8266.h. Copyright info below
 #ifndef _CAYENNEMQTTESP8266SHIELD_h
 #define _CAYENNEMQTTESP8266SHIELD_h
 
+#define INFO_CONNECTION "ESP8266"
+
 #include "Client.h"
 #include "ESP8266SerialLibrary.h"
 #include "CayenneUtils/CayenneDefines.h"

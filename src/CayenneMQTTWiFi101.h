@@ -18,6 +18,10 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 #ifndef _CAYENNEMQTTWIFI101_h
 #define _CAYENNEMQTTWIFI101_h
 
+#ifndef INFO_CONNECTION
+#define INFO_CONNECTION "WiFi101"
+#endif
+
 #include <SPI.h>
 #include <WiFi101.h>
 #include "CayenneUtils/CayenneDefines.h"
