@@ -2,6 +2,7 @@
 The Cayenne MQTT Arduino Library provides functions to easily connect to the [Cayenne IoT project builder](https://www.cayenne-mydevices.com). This library is designed to work with Arduino, ESP8266 and ESP32 devices. With it you can send data to and receive data from Cayenne.
 
 ![alt text](https://upload.wikimedia.org/wikipedia/commons/3/38/Arduino_Uno_-_R3.jpg)
+
 [Arduino Uno image](https://commons.wikimedia.org/wiki/File%3AArduino_Uno_-_R3.jpg) by [SparkFun](https://www.sparkfun.com) is licensed under [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/)
 
 ![alt text](https://cdn-learn.adafruit.com/assets/assets/000/024/792/medium640/adafruit_products_2471_iso_assembled_01_ORIG.jpg?1429908417)
