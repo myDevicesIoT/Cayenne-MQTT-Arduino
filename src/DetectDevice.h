@@ -204,9 +204,9 @@
         #elif defined(ARDUINO_ESP8266_THING_DEV)
         #define INFO_DEVICE  "Esp Thing Dev"
 
-		/* ESP32 */
-		#elif defined(ARDUINO_ARCH_ESP32)
-		#define INFO_DEVICE  "ESP32"
+        /* ESP32 */
+        #elif defined(ARDUINO_ARCH_ESP32)
+        #define INFO_DEVICE  "ESP32"
 
         /* Digistump */
         #elif defined(ARDUINO_ESP8266_OAK)
