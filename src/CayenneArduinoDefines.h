@@ -41,11 +41,8 @@ Logging code adapted from Blynk library BlynkDebug.h. Copyright info below.
 	#endif
 #endif
 
-// Added support for CC3200 LaunchPad and CC3100 BoosterPack for other LaunchPads
-// Rei Vilo, Nov. 30, 2016 — CC = BY SA NC
-#if defined(ENERGIA)
-#include "stdarg.h"
-#endif
+#include <stdio.h>
+#include <stdarg.h>
 
 #ifdef CAYENNE_PRINT
 	static void log(const char* CAYENNE_PROGMEM message, ...)
