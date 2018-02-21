@@ -54,6 +54,15 @@
     #define INFO_CPU      "ATtiny2313"
     #elif defined(__AVR_ATtiny4313__)
     #define INFO_CPU      "ATtiny4313"
+
+    /******************************************
+     * ESP8266
+     */
+
+    #elif defined(ESP8266)
+    #define INFO_CPU      "Xtensa32"
+    #elif defined(ESP32)
+    #define INFO_CPU      "XtensaLX6"
     #endif
 #endif
 
@@ -194,6 +203,10 @@
         #define INFO_DEVICE  "Esp Thing"
         #elif defined(ARDUINO_ESP8266_THING_DEV)
         #define INFO_DEVICE  "Esp Thing Dev"
+
+        /* ESP32 */
+        #elif defined(ARDUINO_ARCH_ESP32)
+        #define INFO_DEVICE  "ESP32"
 
         /* Digistump */
         #elif defined(ARDUINO_ESP8266_OAK)

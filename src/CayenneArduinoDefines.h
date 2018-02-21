@@ -2,7 +2,7 @@
 The MIT License(MIT)
 
 Cayenne Arduino Client Library
-Copyright © 2016 myDevices
+Copyright (c) 2016 myDevices
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
 documentation files(the "Software"), to deal in the Software without restriction, including without limitation
@@ -52,7 +52,7 @@ Logging code adapted from Blynk library BlynkDebug.h. Copyright info below.
 		char buffer[12];
 		CAYENNE_PRINT.print('[');
 		CAYENNE_PRINT.print(millis());
-		CAYENNE_PRINT.print(F("] "));
+		CAYENNE_PRINT.print(CAYENNE_FLASH("] "));
 		const char* p = message;
 		size_t n = 0;
 		while (1) {

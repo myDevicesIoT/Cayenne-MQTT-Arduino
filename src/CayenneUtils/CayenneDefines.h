@@ -18,7 +18,7 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 #ifndef _CAYENNEDEFINES_h
 #define _CAYENNEDEFINES_h
 
-#define CAYENNE_LIBRARY_VERSION "1.1.0"
+#define CAYENNE_LIBRARY_VERSION "1.2.0"
 #define CAYENNE_VERSION "v1"
 #define CAYENNE_DOMAIN "mqtt.mydevices.com"
 #define CAYENNE_PORT 1883
@@ -58,6 +58,7 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 #define CAYENNE_STRNCMP(s1, s2, n) strncmp_P(s1, s2, n)
 #define CAYENNE_MEMCPY(s1, s2, n) memcpy_P(s1, s2, n)
 #define CAYENNE_READ_BYTE(b) pgm_read_byte(b);
+#define CAYENNE_FLASH(s) F(s)
 #else
 #define CAYENNE_PROGMEM
 #define CAYENNE_PSTR(s) s
@@ -66,6 +67,7 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 #define CAYENNE_STRNCMP(s1, s2, n) strncmp(s1, s2, n)
 #define CAYENNE_MEMCPY(s1, s2, n) memcpy(s1, s2, n)
 #define CAYENNE_READ_BYTE(b) *b;
+#define CAYENNE_FLASH(s) s
 #endif
 
 #include "CayenneTypes.h"
