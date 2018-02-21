@@ -55,15 +55,15 @@
     #elif defined(__AVR_ATtiny4313__)
     #define INFO_CPU      "ATtiny4313"
 
-	 /******************************************
-	 * ESP8266
-	 */
+    /******************************************
+     * ESP8266
+     */
 
-	#elif defined(ESP8266)
-	#define INFO_CPU      "Xtensa32"
-	#elif defined(ESP32)
-	#define INFO_CPU      "XtensaLX6"
-	#endif
+    #elif defined(ESP8266)
+    #define INFO_CPU      "Xtensa32"
+    #elif defined(ESP32)
+    #define INFO_CPU      "XtensaLX6"
+    #endif
 #endif
 
 #ifndef INFO_DEVICE
