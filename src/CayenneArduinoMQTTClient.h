@@ -86,12 +86,14 @@ public:
 	* NOTE: Decreasing the yieldTime while calling write functions (e.g. virtualWrite) in your main loop could cause a 
 	* large number of messages to be sent to the Cayenne server. Use caution when adjusting this because sending too many 
 	* messages could cause your IP to be rate limited or even blocked. If you would like to reduce the yieldTime to cause your 
-	* main loop to run faster, make sure you use a timer for your write functions to prevent them from running too often. 
+	* main loop to run faster, make sure you use the CAYENNE_OUT functions to send data or a timer for your write functions
+	* to prevent them from running too often. 
+	* @param pollInterval  Interval in milliseconds between calls to poll for data in CAYENNE_OUT functions.
 	*/
-	void loop(int yieldTime = 1000) {
+	void loop(int yieldTime = 1000, int pollInterval = 15000) {
 		CayenneMQTTYield(&_mqttClient, yieldTime);
 		static unsigned long lastPoll = millis() - 15000;
-		if (millis() - lastPoll > 15000) {
+		if (millis() - lastPoll > pollInterval) {
 			lastPoll = millis();
 			pollVirtualChannels();
 		}
