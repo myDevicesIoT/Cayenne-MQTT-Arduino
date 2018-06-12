@@ -129,7 +129,7 @@ extern "C" {
 	* @param[in] port Destination port
 	* @return 0 if successfully connected, an error code otherwise
 	*/
-	int NetworkConnect(Network* network, char* addr, int port);
+	int NetworkConnect(Network* network, const char* addr, int port);
 
 	/**
 	* Close the connection.
