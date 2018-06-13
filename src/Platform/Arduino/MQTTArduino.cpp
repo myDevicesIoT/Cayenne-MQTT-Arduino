@@ -110,7 +110,7 @@ void NetworkInit(Network* network, void* client, int chunkSize)
 }
 
 
-int NetworkConnect(Network* network, char* addr, int port)
+int NetworkConnect(Network* network, const char* addr, int port)
 {
 	Client* client = static_cast<Client*>(network->client);
 	return client->connect(addr, port);
