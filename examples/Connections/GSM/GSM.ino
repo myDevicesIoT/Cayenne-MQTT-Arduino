@@ -14,7 +14,7 @@ Steps:
 //#define CAYENNE_DEBUG       // Uncomment to show debug messages
 #define CAYENNE_PRINT Serial  // Comment this out to disable prints and save space
 
-// Select your modem:
+// Uncomment your modem type:
 #define TINY_GSM_MODEM_SIM800
 // #define TINY_GSM_MODEM_SIM808
 // #define TINY_GSM_MODEM_SIM900
@@ -28,13 +28,15 @@ Steps:
 
 #include <CayenneMQTTGSM.h>
 
-// This sketch uses a software serial connection. You can replace this with a hardware serial if 
-// your device supports it, e.g. Mega, Leonardo, etc.
+// This sketch uses a software serial connection.
 #include <SoftwareSerial.h>
 SoftwareSerial gsmSerial(2, 3); // RX, TX
+// If you are using a device that supports a hardware serial (Mega, Leonardo, etc.) and prefer to use
+// that you can comment out the above lines and uncomment the one below.
+//#define gsmSerial Serial1
 
 // GSM connection info.
-char apn[] = "AccessPointName"; // Access point name. Leave empty if it is not needed.
+char apn[] = ""; // Access point name. Leave empty if it is not needed.
 char gprsLogin[] = ""; // GPRS username. Leave empty if it is not needed.
 char gprsPassword[] = ""; // GPRS password. Leave empty if it is not needed.
 char pin[] = ""; // SIM pin number. Leave empty if it is not needed.
@@ -46,6 +48,8 @@ char clientID[] = "CLIENT_ID";
 
 void setup() {
 	Serial.begin(9600);
+	// Auto-detect the GSM serial baud rate. You can manually set it instead if you want to save a bit of space.
+	TinyGsmAutoBaud(gsmSerial);
 	Cayenne.begin(username, password, clientID, gsmSerial, apn, gprsLogin, gprsPassword, pin);
 }
 
