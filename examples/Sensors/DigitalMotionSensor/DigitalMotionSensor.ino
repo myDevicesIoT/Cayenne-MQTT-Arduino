@@ -32,6 +32,7 @@ char clientID[] = "CLIENT_ID";
 
 void setup()
 {
+	pinMode(SENSOR_PIN, INPUT);
 	Serial.begin(9600);
 	Cayenne.begin(username, password, clientID);
 }
@@ -54,7 +55,7 @@ void checkSensor()
 		// Check the sensor state and send data when it changes.
 		currentState = digitalRead(SENSOR_PIN);
 		if (currentState != previousState) {
-			Cayenne.virtualWrite(VIRTUAL_CHANNEL, currentState);
+                        Cayenne.virtualWrite(VIRTUAL_CHANNEL, currentState, "digital_sensor","d");
 			previousState = currentState;
 		}
         previousMillis = currentMillis;
