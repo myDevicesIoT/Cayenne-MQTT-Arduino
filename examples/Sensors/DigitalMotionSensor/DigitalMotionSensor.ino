@@ -32,13 +32,13 @@ char clientID[] = "CLIENT_ID";
 
 void setup()
 {
+	pinMode(SENSOR_PIN, INPUT);
 	Serial.begin(9600);
 	Cayenne.begin(username, password, clientID);
 }
 
 void loop()
 {
-	pinMode(SENSOR_PIN, INPUT);
 	Cayenne.loop();
 	checkSensor();
 }
