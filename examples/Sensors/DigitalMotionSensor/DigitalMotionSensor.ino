@@ -55,7 +55,7 @@ void checkSensor()
 		// Check the sensor state and send data when it changes.
 		currentState = digitalRead(SENSOR_PIN);
 		if (currentState != previousState) {
-                        Cayenne.virtualWrite(VIRTUAL_CHANNEL, currentState, "digital_sensor","d");
+                       Cayenne.virtualWrite(VIRTUAL_CHANNEL, currentState, "digital_sensor","d");
 			previousState = currentState;
 		}
         previousMillis = currentMillis;
