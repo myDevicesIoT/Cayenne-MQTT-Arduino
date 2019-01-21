@@ -12,10 +12,7 @@
 
 #define CAYENNE_DEBUG
 #define CAYENNE_PRINT Serial
-#include <CayenneMQTTESP8266.h>
-
-char ssid[] = "ssid";
-char wifiPassword[] = "password";
+#include <CayenneMQTTEthernet.h> // Change this to use a different communication device. See Communications examples.
 
 // Cayenne authentication info. This should be obtained from the Cayenne Dashboard.
 char username[] = "MQTT_USERNAME";
@@ -31,7 +28,7 @@ bool crossedThreshold = false;
 
 void setup() {
   Serial.begin(9600);
-  Cayenne.begin(username, password, clientID, ssid, wifiPassword);
+  Cayenne.begin(username, password, clientID);
 }
 
 void sendTriggerValue(int channel, int value, int threshold, bool sendBelowThreshold) {
