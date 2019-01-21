@@ -9,7 +9,7 @@
   5. Add trigger on your cayenne dashboard for the TRIGGER_CHANNEL widget when it becomes 1.
 */
 
-#define CAYENNE_DEBUG
+//#define CAYENNE_DEBUG
 #define CAYENNE_PRINT Serial
 #include <CayenneMQTTEthernet.h> // Change this to use a different communication device. See Communications examples.
 
