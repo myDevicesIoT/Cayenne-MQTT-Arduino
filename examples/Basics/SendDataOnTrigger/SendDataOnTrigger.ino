@@ -3,11 +3,10 @@
   The CayenneMQTT Library is required to run this sketch. If you have not already done so you can install it from the Arduino IDE Library Manager.
   Steps:
   1. Set the trigger and threshold values in the sketch below.
-  3. Set the Cayenne authentication info to match the authentication info from the Dashboard.
-  4. Set the network name and password.
-  5. Compile and upload the sketch.
-  6. Two temporary widget (DATA_CHANNEL and TRIGGER_CHANNEL) will be automatically generated in the Cayenne Dashboard. To make the widget permanent click the plus sign on the widget.
-  7. Add trigger on your cayenne dashboard for the TRIGGER_CHANNEL widget when it becomes 1.
+  2. Set the Cayenne authentication info to match the authentication info from the Dashboard.
+  3. Compile and upload the sketch.
+  4. Two temporary widget (DATA_CHANNEL and TRIGGER_CHANNEL) will be automatically generated in the Cayenne Dashboard. To make the widget permanent click the plus sign on the widget.
+  5. Add trigger on your cayenne dashboard for the TRIGGER_CHANNEL widget when it becomes 1.
 */
 
 #define CAYENNE_DEBUG
