@@ -45,5 +45,5 @@ void loop()
 // This function is called at intervals to send sensor data to Cayenne.
 CAYENNE_OUT(VIRTUAL_CHANNEL)
 {
-	Cayenne.virtualWrite(VIRTUAL_CHANNEL, analogRead(SENSOR_PIN));
+	Cayenne.virtualWrite(VIRTUAL_CHANNEL, analogRead(SENSOR_PIN), "lum", "lux");
 }
