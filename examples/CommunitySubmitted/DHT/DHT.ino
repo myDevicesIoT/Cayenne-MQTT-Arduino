@@ -14,7 +14,7 @@
    [OUTPUT] --- [Digital Pin 2]
   4. Set the TEMPERATURE_VIRTUAL_CHANNEL value below to a free virtual channel.
   5. Set the HUMIDITY_VIRTUAL_CHANNEL value below to a free virtual channel.
-  6. Set the correct DHT type you are using and the pin attached to arduino.
+  6. Set the correct DHT type you are using and the pin attached to the Arduino.
   7. Set the Cayenne authentication info to match the authentication info from the Dashboard.
   8. Compile and upload this sketch.
   9. Once the Arduino connects to the Dashboard it should automatically create temporary display widget with data.
