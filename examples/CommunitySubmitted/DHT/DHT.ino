@@ -9,7 +9,7 @@
   3. Attach a DHT to your Arduino:
    Schematic:
    DHT    Arduino
-   [VDD] --- [3V3]
+   [VDD] --- [5V]
    [GND] --- [GND]
    [OUTPUT] --- [Digital Pin 2]
   4. Set the TEMPERATURE_VIRTUAL_CHANNEL value below to a free virtual channel.
