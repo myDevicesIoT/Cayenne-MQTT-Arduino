@@ -47,7 +47,7 @@ void loop() {
   Cayenne.loop();
 }
 
-// This function is called at intervals to send temperature sensor data to Cayenne.
+// This function is called at intervals to send HC-SR04 sensor data to Cayenne.
 CAYENNE_OUT(DISTANCE_VIRTUAL_CHANNEL)
 {
   digitalWrite(TRIGGER_PIN, LOW);// Clears the trigger Pin
