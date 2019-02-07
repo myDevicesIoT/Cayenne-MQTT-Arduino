@@ -50,16 +50,16 @@ void loop() {
 // This function is called at intervals to send HC-SR04 sensor data to Cayenne.
 CAYENNE_OUT(DISTANCE_VIRTUAL_CHANNEL)
 {
-  digitalWrite(TRIGGER_PIN, LOW);// Clears the trigger Pin
+  digitalWrite(TRIGGER_PIN, LOW); // Clears the trigger pin
   delayMicroseconds(2);
 
-  digitalWrite(TRIGGER_PIN, HIGH); // Sets the trigger Pin on HIGH state for 10 micro seconds
+  digitalWrite(TRIGGER_PIN, HIGH); // Sets the trigger pin on HIGH state for 10 micro seconds
   delayMicroseconds(10);
   digitalWrite(TRIGGER_PIN, LOW);
 
-  duration = pulseIn(ECHO_PIN, HIGH);// Reads the echo Pin, returns the sound wave travel time in microseconds
+  duration = pulseIn(ECHO_PIN, HIGH); // Reads the echo pin, returns the sound wave travel time in microseconds
 
-  distance = duration * 0.034 / 2;  // Calculating the distance.
+  distance = duration * 0.034 / 2; // Calculating the distance.
 
   // Send the distance value to Cayenne on proximity widget in centimeter.
   Cayenne.virtualWrite(DISTANCE_VIRTUAL_CHANNEL, distance, "prox", "cm");
