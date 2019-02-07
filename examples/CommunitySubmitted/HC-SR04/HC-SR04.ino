@@ -50,14 +50,14 @@ void loop() {
 // This function is called at intervals to send temperature sensor data to Cayenne.
 CAYENNE_OUT(DISTANCE_VIRTUAL_CHANNEL)
 {
-  digitalWrite(TRIGGER_PIN, LOW);// Clears the trigPin
+  digitalWrite(TRIGGER_PIN, LOW);// Clears the trigger Pin
   delayMicroseconds(2);
 
-  digitalWrite(TRIGGER_PIN, HIGH); // Sets the trigPin on HIGH state for 10 micro seconds
+  digitalWrite(TRIGGER_PIN, HIGH); // Sets the trigger Pin on HIGH state for 10 micro seconds
   delayMicroseconds(10);
   digitalWrite(TRIGGER_PIN, LOW);
 
-  duration = pulseIn(ECHO_PIN, HIGH);// Reads the echoPin, returns the sound wave travel time in microseconds
+  duration = pulseIn(ECHO_PIN, HIGH);// Reads the echo Pin, returns the sound wave travel time in microseconds
 
   distance = duration * 0.034 / 2;  // Calculating the distance.
 
