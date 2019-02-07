@@ -63,6 +63,4 @@ CAYENNE_OUT(DISTANCE_VIRTUAL_CHANNEL)
 
   // Send the distance value to Cayenne on proximity widget in centimeter.
   Cayenne.virtualWrite(DISTANCE_VIRTUAL_CHANNEL, distance, "prox", "cm");
-  // Send the distance value to Cayenne on proximity widget in meter.
-  //Cayenne.virtualWrite(DISTANCE_VIRTUAL_CHANNEL, distance, "prox", "m");
 }
