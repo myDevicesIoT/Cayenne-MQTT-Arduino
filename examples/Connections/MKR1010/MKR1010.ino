@@ -13,7 +13,7 @@ Steps:
 
 //#define CAYENNE_DEBUG       // Uncomment to show debug messages
 #define CAYENNE_PRINT Serial  // Comment this out to disable prints and save space
-#include <CayenneMQTTWiFiNINA.h>
+#include <CayenneMQTTMKR1010.h>
 
 // WiFi network info.
 char ssid[] = "ssid";
