@@ -1,14 +1,14 @@
 /*
-This example shows how to connect to Cayenne using an Arduino/Genuino MKR1000 and send/receive sample data.
+This example shows how to connect to Cayenne using an Arduino MKR1010 and send/receive sample data.
 The CayenneMQTT Library is required to run this sketch. If you have not already done so you can install it from the Arduino IDE Library Manager.
 Steps:
 1. Install the Arduino SAMD Boards from the Arduino IDE Boards Manager if you have not already done so.
 2. Install the WiFiNINA library.
-2. Select the MKR1010 board from the Arduino IDE Tools menu.
-3. Set the Cayenne authentication info to match the authentication info from the Dashboard.
-4. Set the network name and password.
-5. Compile and upload the sketch.
-6. A temporary widget will be automatically generated in the Cayenne Dashboard. To make the widget permanent click the plus sign on the widget.
+3. Select the MKR1010 board from the Arduino IDE Tools menu.
+4. Set the Cayenne authentication info to match the authentication info from the Dashboard.
+5. Set the network name and password.
+6. Compile and upload the sketch.
+7. A temporary widget will be automatically generated in the Cayenne Dashboard. To make the widget permanent click the plus sign on the widget.
 */
 
 //#define CAYENNE_DEBUG       // Uncomment to show debug messages
