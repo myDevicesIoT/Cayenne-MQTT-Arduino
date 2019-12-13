@@ -14,6 +14,8 @@
  *    Allan Stockdill-Mander/Ian Craggs - initial API and implementation and/or initial documentation
  *******************************************************************************/
 
+#include <Arduino.h>
+#include "CayenneArduinoDefines.h"
 #include "MQTTClient.h"
 
 static void NewMessageData(MessageData* md, MQTTString* aTopicName, MQTTMessage* aMessage) {

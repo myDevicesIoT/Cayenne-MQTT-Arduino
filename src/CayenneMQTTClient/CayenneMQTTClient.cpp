@@ -15,8 +15,11 @@ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER I
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+#include <Arduino.h>
+#include "CayenneArduinoDefines.h"
 #include "CayenneMQTTClient.h"
 #include <string.h>
+
 
 void MQTTMessageArrived(MessageData* md, void* userData)
 {
@@ -332,7 +335,7 @@ int CayenneMQTTSubscribe(CayenneMQTTClient* client, const char* clientID, Cayenn
 	int result = CayenneBuildTopic(topicName, sizeof(topicName), client->username, clientID ? clientID : client->clientID, topic, channel);
 	if (result == CAYENNE_SUCCESS) {
 		int i;
-		int qos = QOS0;
+		QoS qos = QOS0;
 		result = MQTTSubscribe(&client->mqttClient, topicName, qos, NULL);
 		if (handler && result == qos)
 		{
