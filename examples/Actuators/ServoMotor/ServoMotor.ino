@@ -52,3 +52,12 @@ CAYENNE_IN(VIRTUAL_CHANNEL)
 	// Move the servo to the specified position.
 	s1.write(position);
 }
+
+// This function is called at intervals to send data to Cayenne and keep the device online.
+// Will create a temporary green widget on Channel 0, make it permanent by clicking on '+'. 
+CAYENNE_OUT(0)
+{
+	CAYENNE_LOG("Send data for Virtual Channel 0");
+	// This command writes the device's uptime in seconds to the Virtual Channel. 
+	Cayenne.virtualWrite(0, millis() / 1000);
+}
