@@ -25,6 +25,7 @@ char password[] = "MQTT_PASSWORD";
 char clientID[] = "CLIENT_ID";
 
 #define VIRTUAL_CHANNEL 1
+
 #define ACTUATOR_PIN 4 // Do not use digital pins 0 or 1 since those conflict with the use of Serial.
 
 void setup()
@@ -46,4 +47,13 @@ CAYENNE_IN(VIRTUAL_CHANNEL)
 	CAYENNE_LOG("Channel %d, pin %d, value %d", VIRTUAL_CHANNEL, ACTUATOR_PIN, value);
 	// Write the value received to the digital pin.
 	digitalWrite(ACTUATOR_PIN, value);
+}
+
+// This function is called at intervals to send data to Cayenne and keep the device online.
+// Will create a temporary green widget on Channel 0, make it permanent by clicking on '+'. 
+CAYENNE_OUT(0)
+{
+	CAYENNE_LOG("Send data for Virtual Channel 0");
+	// This command writes the device's uptime in seconds to the Virtual Channel. 
+	Cayenne.virtualWrite(0, millis() / 1000);
 }
