@@ -33,7 +33,7 @@ void loop() {
 CAYENNE_OUT(1)
 {
 	// Write data to Cayenne here. 
-  int val = analogRead(0);
-  val = map(val, 0, 1023, 0, 100);  
+	int val = analogRead(0);
+	val = map(val, 0, 1023, 0, 100);  
 	Cayenne.virtualWrite(1, val, "tl", "null");
 }
