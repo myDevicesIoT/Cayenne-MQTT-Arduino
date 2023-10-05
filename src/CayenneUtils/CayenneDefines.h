@@ -18,9 +18,14 @@ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEAL
 #ifndef _CAYENNEDEFINES_h
 #define _CAYENNEDEFINES_h
 
-#define CAYENNE_LIBRARY_VERSION "1.3.0"
+#define CAYENNE_LIBRARY_VERSION "1.3.1"
 #define CAYENNE_VERSION "v1"
+
+// allows for different hostname
+#ifndef CAYENNE_DOMAIN
 #define CAYENNE_DOMAIN "mqtt.mydevices.com"
+#endif
+
 #define CAYENNE_PORT 1883
 #define CAYENNE_TLS_PORT 8883
 
